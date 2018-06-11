@@ -146,23 +146,26 @@ proyecto son:
 
 #### 1) Definición del producto
 
-En el `README.md` cuéntanos cómo pensaste y te acercaste a los usuarios al
-desarrollar tu producto (Tip: entrevistas) y cuál fue tu proceso para definir
-el producto final a nivel de experiencia y de interfaz. Es importante que
-detalles:
+Las Training Managers (TMS) son las principales usuarias de este producto.
+El principal objetivo de ellas es,  analizar la mayor cantidad de datos posibles respecto al progreso de las estudiantes en el desarrollo del LMS y con el estudio de estos datos ellas puedan apoyar a las estudiantes en el progreso óptimo de su aprendizaje. 
+Los datos más relevantes que desean ver las las Training Managers (TMS son:
+1.	Visualizar el cálculo del porcentaje de completitud de todos los cursos por cada estudiante.
+2.	Visualizar el grado de completitud de lecturas, ejercicios autocorregidos, y quizzes por cada estudiante.
+3.	Visualizar el orden estudiantes por completitud general (porcentaje consumido/completado de todos los cursos del cohort en cuestión), de lecturas, ejercicios autocorregidos y quizzes.
+4.	Visualizar correlaciones entre grupos de información. Ejemplo: porcentaje de completitud de lecturas con porcentaje de resultados en quizzes y  porcentaje de resultados en quizzes con porcentaje de resultados en ejercicios.
 
-* Quiénes son los principales usuarios de producto.
-* Cuáles son los objetivos de estos usuarios en relación con el producto.
-* Cuáles son los datos más relevantes que quieren ver en la interfaz y
-  por qué. Cómo los descubriste.
-* Cuándo revisan normalmente estos datos los usuarios.
-* Cómo crees que el producto les está resolviendo sus problemas.
-* Cómo fue tu proceso de diseño.
+Descubrimos esa información por medio de la encuesta enviada vía google.docs y de la entrevista pública que le realizamos a Alejandra en clases.
+Las Training Managers (TMS) revisan la información en promedio cada dos semanas (al finalizar cada sprint) y cada fin de mes (al finalizar el proyecto).
+Creemos  que este producto les ayudará a las Training Managers (TMS) a conocer que estudiantes están mejor en cuanto a habilidades en general y cuales tienen más dificultades, para así ellas puedan distribuir los squads de forma equitativa  y también para poder organizar sesiones de office hours con quienes necesitan más apoyo.
+Toda esa información nos brindó Alejandra por medio de las respuestas que ella nos dó en la encuesta y en la entrevista pública que ella realizó en las horas de clase. De esa manera obtuvimos más información que planteamos a desarrollar en el boceto
+Realizamos  un sketch (boceto) de nuestra  solución usando papel y lápiz, y agregamos la fotografía.
+
 
 #### 2) Sketch de la solución (prototipo de baja fidelidad)
 
-Debes hacer un _sketch_ (boceto) de tu solución usando papel y lápiz, tomarle
-una foto, subirla a tu repositorio y hacer mención del _sketch_ en tu `README.md`.
+![Prototipo1](fotos/PrototipoParte1.jpg)
+![Prototipo2](fotos/PrototipoParte2.jpg)
+![Prototipo3](fotos/PrototipoParte3.jpg)
 
 #### 3) Diseño de la Interfaz de Usuario (prototipo de alta fidelidad)
 

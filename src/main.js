@@ -19,7 +19,7 @@ function loadProgressData(users){
             var progress = JSON.parse(xhr_progress.responseText);
             computeUsersStats(users, progress, courses = null)
         }
-    }
+    } 
 }
 function computeUsersStats(users, progress, courses = null){
     console.log(progress);
