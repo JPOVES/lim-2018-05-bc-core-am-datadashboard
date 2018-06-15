@@ -1,29 +1,146 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <link rel="stylesheet" href="style.css"/>
-  </head>
-  <body>
-    <h1>Base de Datos</h1>
-    <table>
-      <thead>
-        <tr>
-          <th style="display: none;">Id</th>
-          <th>SignupCohort</th>
-          <th style="display: none;">Timezone</th>
-          <th>Name</th>
-          <th>Progress</th>
-          <th>Courses</th>
-          
-        </tr>
-      </thead>
-      <tbody id="tbody">
-        
-      </tbody>
-    </table>
+<head>
+<meta charset="utf-8" />
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<title>Data Dashboard</title>
+<link rel= "stylesheet" href="style.css">
+</head>
+<!--Esqueleto de la página-->
+<body>
+<header>
+<section id="banner"><a href="#"><img src="fotos/logoLABORATORIA4.jpeg"></a></section>
+<section id="logo"><a href="#"><img src="fotos/alejandra.jpg"></a></section>
+<!--<p>Alejandra Ramirez</p>
+<br>
+<p>Training manager</p>-->
+<div id="user">
+<section id="userspace">
+<ul class="userspaceoptions">
+<li><a href="">Configuración</a></li>
+</ul>
+</section>
+</div>
+</header>
+<nav>
+<div id="menu">
+<ul class="navmenu">
+<!--<li><a href="">XXXX</a></li>-->
+<li><a href="">SEARCH LOCATION</a>
+<ul>
+<li><a href="">Guadalajara</a></li>
+<li><a href="">Lima</a>
+<ul>
+<li><a href="">2016-1</a></li>
+<li><a href="">2016-2</a></li>
+<li><a href="">2017-1</a></li>
+<li><a href="">2018-1</a>
+<ul>
+<li><a href="">A.M.</a>
+<ul>
+<li><a href="">Introduction</a></li>
+<li><a href="">Variables and data types</a></li>
+<li><a href="">UX desing</a></li>
+</li> 
+</ul>
+<li><a href="">P.M.</a></li> 
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="">México D.F.</a></li>
+<li><a href="">Santiago</a></li>
+<li><a href="">Sao Paoulo</a></li>
+</ul>
+</li>
+<!--<li><a href="">GENERATION</a>
+<ul>
+<li><a href="">Submenu1</a></li>
+<li><a href="">Submenu2</a></li>
+<li><a href="">Submenu3</a></li>
+<li><a href="">Submenu4</a></li>
+</ul>
+</li>-->
+<li><a href="">HELP</a></li>
+</ul>
+</div>
+</nav>
+<main>
+<div id="grafic1">
+<section id="students"><p><strong>1. % de estudiantes actules</strong></p></section>
+</div>
+<div id="searchstudent">
+<button type = "submit" id = "search" value = " ">Buscar</button>
+<input type="search" id="input-searchstudent" placeholder= "Buscar estudiante"> 
+</div> 
+<div id="table2">
+<section id="students"><p><strong>2. % de Completitud general de cursos</strong></p></section>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>SignupCohort</th>
+<th>Timezone</th>
+<th>Name</th>
+<th>Locale</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody id="tbody">
+</tbody>
+</table>
+</div>
+<div id="curse1">
+<section id="students"><p><strong>3. Introducción</strong></p></section>
+<p>
+f
+<br>
+f
+<br>
+f
+<br>
+f
+<br>
+f
+<br>
+</p>
+</div>
+<div id="curse2">
+<section id="students"><p><strong>4. Variables y data types</strong></p></section>
+</div>
+<p>
+f
+<br>
+f
+<br>
+f
+<br>
+f
+<br>
+f
+<br>
+</p>
+<div id="curse3">
+<section id="students"><p><strong>5. UX-desing</strong></p></section>
+</div>
+<p>
+f
+<br>
+f
+<br>
+f
+<br>
+f
+<br>
+f
+<br>
+</p>
+<!--<aside id="left"></aside>
+<article></article>
+<aside id="rigth"></aside>-->
+</main>
+<footer><p>© Diseñado por <a target = "_blank" href = "https://es-la.facebook.com/">Genesis Nole y Jessica Poves </a>- LABORATORIA</p></footer>
+<script src="main.js"></script>
 
-    <script src="main.js"></script>
-  </body>
+</body>
 </html>
