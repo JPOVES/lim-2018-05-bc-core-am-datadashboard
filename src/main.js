@@ -27,17 +27,18 @@ function loadProgressData(users){
             //PARSEO LA RESPUESTA, OBTENIENDO UN OBJETO QUE A SU VEZ LO TRANSFORMO EN ARRAY PARA PODER USAR SUS POSICIONES 
            console.log(JSON.parse(xhr_progress.responseText));
             var progress = Object.values(JSON.parse(xhr_progress.responseText));
-            computeUsersStats(users, progress, courses = null)
+            computeUsersStats(users, progress, courses)
         }
     } 
 }
 // MUESTRA DATOS DE USUARIOS Y PROGRESO EN LA INTERFAZ
-function computeUsersStats(users, progress, courses = null){
-    console.log(users);  
-    console.log(progress);
+function computeUsersStats(users, progress, courses){
     let body = document.getElementById('tbody');
     for(var i = 0; i < users.length; i++){ 
-        if(i < 15){
+       if(progress == intro && intro == percent){
+
+
+       }
             body.innerHTML += `
             <tr>
                 <td style="display: none;">${users[i].id}</td>
@@ -45,10 +46,10 @@ function computeUsersStats(users, progress, courses = null){
                 <td style="display: none;">${users[i].timezone}</td>
                 <td>${users[i].name}</td>
                 <td>${progress[i].intro.percent}</td>
-                <td>-${progress[i].intro.units}<br>
+                <td>${progress[i].intro.units}<br>
                   
                 </td>
             </tr>`;
-        }
+        
     }
 }
