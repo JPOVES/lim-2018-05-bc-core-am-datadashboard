@@ -27,21 +27,18 @@ function loadProgressData(users){
             //PARSEO LA RESPUESTA, OBTENIENDO UN OBJETO QUE A SU VEZ LO TRANSFORMO EN ARRAY PARA PODER USAR SUS POSICIONES 
            console.log(JSON.parse(xhr_progress.responseText));
             var progress = Object.values(JSON.parse(xhr_progress.responseText));
-            computeUsersStats(users, progress, courses)
+            computeUsersStats(users, progress, courses = null)
         }
     } 
 }
 // MUESTRA DATOS DE USUARIOS Y PROGRESO EN LA INTERFAZ
-function computeUsersStats(users, progress, courses){
+function computeUsersStats(users, progress, courses = null){
     let body = document.getElementById('tbody');
     for(var i = 0; i < users.length; i++){ 
-       if(progress == intro && intro == percent){
-
-
-       }
+       if (i < 15){
             body.innerHTML += `
             <tr>
-                <td style="display: none;">${users[i].id}</td>
+                <td style="display: none;">users[i].id}</td>
                 <td>${users[i].signupCohort}</td>
                 <td style="display: none;">${users[i].timezone}</td>
                 <td>${users[i].name}</td>
@@ -50,6 +47,7 @@ function computeUsersStats(users, progress, courses){
                   
                 </td>
             </tr>`;
+       }
         
-    }
+    } 
 }
