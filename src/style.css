@@ -157,4 +157,24 @@
     background-color:rgba(153, 153, 153, 0.548);
     color: rgba(17, 6, 7, 0.644)
     }
+#curse1{
+    margin-top: 60px;
+}
+/* Pagination links */
+#pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+#pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+#pagination a:hover:not(.active) {background-color: #ddd;}
     
