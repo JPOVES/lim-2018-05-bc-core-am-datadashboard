@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <link rel="stylesheet" href="style.css"/>
-  </head>
-  <body>
-    <h1>Base de Datos</h1>
-    <table>
-      <thead>
-        <tr>
-          <th style="display: none;">Id</th>
-          <th>SignupCohort</th>
-          <th style="display: none;">Timezone</th>
-          <th>Name</th>
-          <th>Progress</th>
-          <th>Courses</th>
-          
-        </tr>
-      </thead>
-      <tbody id="tbody">
-        
-      </tbody>
-    </table>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" 
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<!--Esqueleto de la página-->
+<body>
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-md-12">
+              <img class="mx-auto d-block" src="fotos/logoLABORATORIA4.jpeg">
+          </div>
+       </div>
+       <div class="row">
+         <div class="col-xs-12 col-md-3">
+            <img class="img-thumbnail" src="fotos/alejandra.jpg">
+            <h2>SEDE</h2>
+            <select class="form-control" id="sedes">
+              <option value="0">Selecionar Sede</option>
+              <option value="gdl">Guadalajara</option>
+              <option value="lim">Lima</option>
+              <option value="cdmx">México DF</option>
+              <option value="spl">Sao Paulo</option>
+              <option value="scl">Santiago De Chile</option>
+            </select>
+            <h2>GENERACIÓN</h2>
+            <select class="form-control" id="generation">
+              <option value="0">seleccionar</option>
+            </select>
+         </div>
+         <div class="col-xs-12 col-md-9">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th style="display: none;">Id</th>
+                      <th>SignupCohort</th>
+                      <th>Name</th>
+                      <th>Course General</th>
+                      <th>Progress</th>
+                      <th>Introducción</th>
+                      <th>Lecturas</th>
+                      <th>Quizes</th>
+                      <th>Variables</th>
+                      <th>Lecturas</th>
+                      <th>Quizz</th>
+                      <th>Ejercicios</th>
+                      <th>Ux Design</th>
+                      <th>Lecturas</th>
+                      <th>Quizz</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                  </tbody>
+              </table>
+            </div>
+              <!--PAGINACIÓN-->
+              <div id="pagination">
+                <a id="prev" href="#">&laquo;</a>
+                <a id="first" href="#">First</a>
+                <a id="last" href="#">Last</a>
+                <a id="next" href="#">&raquo;</a>
+                <input id="total_row" type="hidden">
+                <input id="current_step" type="hidden" value="10">
+              </div>
+         </div>
+       </div>
+    </div>
 
-    <script src="main.js"></script>
-  </body>
+  
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>
