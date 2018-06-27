@@ -1,74 +1,147 @@
+/*Reseteamos márgenes*/
 * {
-  margin:0;
-  padding:0;
-}
-  
-body {
-  width:100%;
-  height:100%;
-  /*margin:auto;*/
-  background-color:white 
+    margin:0px;
+    padding:0px;
 }
 
-header {
-  width:1366px;
-  height:100px;
-}
-      
-#banner {
-  width:1066px;
-  height:100px;
-  float:left;
-  /*background-image:url(fotos/logoLABORATORIA2.jpeg);*/
-}
-      
-#banner a img{ 
-  display:block;
-  margin:auto;
-  width:600px;
-  height:100px;
-}
-      
-#logo {
-  width:300px;
-  height:70px;
-  float:left;
-  background-color: white
-}
-      
-#logo a img { 
-  width:75px;
-  height:70px; 
-  display: flex; 
+body{
+    background:  #f2f2f2;
 }
 
+/*texto*/
+
+#totalContenedor {
+width: 1330px;
+margin-left: 10px;
+margin-right: 10px;
+margin-top: 0px;
+margin-bottom: 10px;
+color: black;
+
+}
+
+header{
+    height: 150px;
+    background-color:white;
+    border-radius:20px; 
+    overflow: hidden;
+}
+
+#LaboratoriaLogo {
+    margin-top: 0px
+}
+#LaboratoriaLogo img {
+    width:50%;
+    height:50%;
+    margin-top: -20px;
+    margin-left: 350px;
+    margin-right: 350px;
+    text-align: center;
+}
+
+aside{
+    width: 250px;
+    height: 500px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+    background-color: #FFE521;
+    border-radius:20px; 
+    overflow: hidden;
+    font-size: 14px;
+    font-family:Hurne Geometrica;
+}
+
+/*centrar foto de Training manager y dando formato*/
+.imgRedonda1{
+    display: block;
+    margin:auto;
+    width:130px;
+    height:130px;
+    border-radius:150px;
+    padding:10px;
+} 
+
+/*Nombre de Training manager*/
+h3 {
+    color:black;
+    font-size: 15px;
+    font-family:Hurne Geometrica;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+} 
+
+.icon-sede,.icon-generation,.icon-courses{
+    color:black;
+    font-size: 20px;
+    font-family:Hurne Geometrica;
+}   
+
+#locals,#generation,#courses {
+font-size: 16px;
+font-family:Hurne Geometrica;
+background: black;
+color:#f2f2f2;
+margin-top: 5px;
+margin-left: 5px;
+margin-bottom: 20px;
+width: 180px;
+}
+
+
+#contenidoTablas {
+    width: 1050px;
+    height: 500px;
+    float: right;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border-radius:20px; 
+    overflow: hidden;
+    font-size: 19px;
+    font-family:Hurne Geometrica;
+    }
+    /*table{
+        display: block;
+        width: 70%;
+        height: 5px;
+        border: 1px solid black;
+      }
       
-table{
-  width: 70%;
-  height: 5px;
-  border: 1px solid black;
-}
-
-th, td{
-  padding: 5px;
-  text-align: left;    
-}
+      td{
+        padding: 5px;
+        font-family:Hurne Geometrica;
+        text-align: left;
+        background: #f2f2f2;    
+      }
       
-/* Pagination links */
-#pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color .3s;
+      th{
+        padding: 5px;
+        font-family:Hurne Geometrica;
+        text-align: left;
+        background: #ffc107; 
+      }*/
+
+
+/*clear: both hace que el pie depagina no interfiera
+con aside y contenido de tablas */    
+footer {
+    background-color: rgb(10, 1, 1);
+    clear: both;
+    border-radius:20px; 
+    overflow: hidden;
 }
 
-/* Style the active/current link */
-#pagination a.active {
-  background-color: dodgerblue;
-  color: white;
-}
+footer h2 {
 
-/* Add a grey background color on mouse-over */
-#pagination a:hover:not(.active) {
-  background-color: #ddd;}
+    font-size: 20px;
+    font-family:Hurne Geometrica;
+    color: #FFE521;
+    text-align: center;
+    padding: 10px;
+}

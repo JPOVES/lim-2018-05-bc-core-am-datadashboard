@@ -1,24 +1,24 @@
-function loadCohortsData(sede) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                            function loadCohortsData(sede){
     const data = new XMLHttpRequest();
     data.open("GET", "../data/cohorts.json", true);
     data.send();
-    data.onreadystatechange = function () {
+    data.onreadystatechange = function() {
         if (data.readyState == 4 && data.status == 200) {
-            cohorts = JSON.parse(data.responseText);
+            cohorts = JSON.parse(data.responseText); 
             var generation = document.getElementById('generation');
             generation.innerHTML = `<option value="0">Selecionar</option>`;
-            for (var i in cohorts) {
-                if (cohorts[i].id.search(sede) >= 0) {
+            for(var i in cohorts){
+                if(cohorts[i].id.search(sede) >= 0){
                     generation.innerHTML += `<option value = "${cohorts[i].id}">${cohorts[i].id}</option>`;
                 }
             }
         }
     };
-
+    
 }
 
 //TRAE LOS DATOS DE LAS ESTUDIANTES
-function loadUsersData() {
+function loadUsersData() {                                                              
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/users.json", true);
     xhr.send();
@@ -41,12 +41,13 @@ function loadProgressData() {
             //SI HAY UNA RESPUESTA EJECUTO ESTA FUNCION PARA ARMAR LAS UI CON LOS DATOS DE USUARIOS Y PROGRESOS
             //PARSEO LA RESPUESTA, OBTENIENDO UN OBJETO QUE A SU VEZ LO TRANSFORMO EN ARRAY PARA PODER USAR SUS POSICIONES 
             progress = Object.values(JSON.parse(xhr_progress.responseText));
+            
         }
 
     }
 }
 
-const usersWithStats = window.computeUsersStats(window.users, window.progress);
+const usersWithStats =  window.computeUsersStats(window.users, window.progress);
 
 // MUESTRA DATOS DE USUARIOS Y PROGRESO EN LA INTERFAZ
 function pagination() {
@@ -83,15 +84,14 @@ function printData(users, progress, init, final) {
     let body = document.getElementById('tbody');
     body.innerHTML = '';
     let cohortId = document.getElementById("generation").value;
-    let courseGeneral = generalCourse(cohortId);
-
+    let courseGeneral = generalCourse(cohortId); 
+    
     for (var i = 0; i < users.length; i++) {
         if (i >= init && i < final) {
             if (progress[i].intro) {
                 // ME DEVUELVE LA POSICION INFORMACION DE UNITS 
-                const introductionStats = introductionCourse(progress[i].intro.units["01-introduction"].parts);
+                const introductionStats =  introductionCourse(progress[i].intro.units["01-introduction"].parts)
                 const variablesStats = variablesCourse(progress[i].intro.units["02-variables-and-data-types"].parts);
-                const uxStats = uxCourse(progress[i].intro.units["03-ux-design"].parts);
 
                 body.innerHTML += `
                 <tr>
@@ -109,10 +109,10 @@ function printData(users, progress, init, final) {
                     <td>${variablesStats.quiz.percent}</td>
                     <td>${variablesStats.exercise.percent}</td>
                     <td>${progress[i].intro.units["03-ux-design"].percent}</td>
-                    <td>${uxStats.reads.percent}</td>
-                    <td>${uxStats.quiz.percent}</td>
+                    <td>---</td>
+                    <td>---</td>
                 </tr>`;
-
+                
             } else {
                 body.innerHTML += `
                 <tr>
@@ -128,9 +128,9 @@ function printData(users, progress, init, final) {
     }
 }
 
-const generalCourse = (cohortsId) => {
+const generalCourse = (cohortsId) =>{
     const courses = window.cohorts.filter((element) => {
-        if (element.id == cohortsId) {
+        if(element.id == cohortsId){
             return element;
         }
     });
@@ -138,126 +138,97 @@ const generalCourse = (cohortsId) => {
 }
 const introductionCourse = (unitsParts) => {
     let objParts = Object.values(unitsParts);
-    let totalReads = 0, introReadCompletition = 0, totalQuiz = 0, introQuizCompletition = 0;
-    for (let j in objParts) {
-        if (objParts[j].type == 'read') {
-            introReadCompletition = introReadCompletition + objParts[j].completed;
+    let totalReads = 0, introReadCompletition = 0 , totalQuiz = 0, introQuizCompletition = 0;
+    for(let j in objParts){
+        if(objParts[j].type == 'read'){
+            introReadCompletition =  introReadCompletition + objParts[j].completed;
             totalReads++;
-
-        } else if (objParts[j].type == 'quiz') {
-            introQuizCompletition = introQuizCompletition + objParts[j].completed;
+            
+        }else if(objParts[j].type == 'quiz'){
+            introQuizCompletition =  introQuizCompletition + objParts[j].completed;
             totalQuiz++;
         }
     }
-    let porcentajeReadIntro = (introReadCompletition / totalReads) * 100;
+    let porcentajeReadIntro = (introReadCompletition / totalReads) * 100 ;
     let porcentajeQuizIntro = (introQuizCompletition / totalQuiz) * 100;
     return {
-        reads: {
+        reads:{
             totalReads: totalReads,
             readsCompleted: introReadCompletition,
             percent: porcentajeReadIntro
         },
         quiz: {
-            totalQuiz: totalQuiz,
+            totalQuiz : totalQuiz,
             quizCompleted: introQuizCompletition,
             percent: porcentajeQuizIntro
         }
-    }
+    } 
 }
 
-const variablesCourse = (unitsParts) => {
+const variablesCourse = (unitsParts) =>{
     let objParts = Object.values(unitsParts);
-    let totalReads = 0, variablesReadCompletition = 0, totalQuiz = 0, variablesQuizCompletition = 0,
+    let totalReads = 0, variablesReadCompletition = 0 , totalQuiz = 0, variablesQuizCompletition = 0, 
         varExercisesCompletition = 0;
-    for (let j in objParts) {
-        if (objParts[j].type == 'read') {
-            variablesReadCompletition = variablesReadCompletition + objParts[j].completed;
+    for(let j in objParts){
+        if(objParts[j].type == 'read'){
+            variablesReadCompletition =  variablesReadCompletition + objParts[j].completed;
             totalReads++;
-        } else if (objParts[j].type == 'quiz') {
-            variablesQuizCompletition = variablesQuizCompletition + objParts[j].completed;
+        }else if(objParts[j].type == 'quiz'){
+            variablesQuizCompletition =  variablesQuizCompletition + objParts[j].completed;
             totalQuiz++;
-        } else if (objParts[j].type == 'practice') {
+        }else if(objParts[j].type == 'practice'){
             objParts[j].exercises ? varExercisesCompletition = varExercisesCompletition + objParts[j].completed : false;
         }
     }
-    let porcentajeReadVar = (variablesReadCompletition / totalReads) * 100;
+    let porcentajeReadVar = (variablesReadCompletition / totalReads) * 100 ;
     let porcentajeQuizVar = (variablesQuizCompletition / totalQuiz) * 100;
     let porcentajeExercisesVar = (varExercisesCompletition) * 100;
 
     return {
-        reads: {
+        reads:{
             totalReads: totalReads,
             readsCompleted: variablesReadCompletition,
             percent: porcentajeReadVar
         },
         quiz: {
-            totalQuiz: totalQuiz,
+            totalQuiz : totalQuiz,
             quizCompleted: variablesQuizCompletition,
             percent: porcentajeQuizVar
         },
-        exercise: {
+        exercise:{
             exerciseCompleted: varExercisesCompletition,
             percent: porcentajeExercisesVar
         }
     }
 }
 
-const uxCourse = (unitsParts) => {
-    let objParts = Object.values(unitsParts);
-    let totalReads = 0, uxReadCompletition = 0, totalQuiz = 0, uxQuizCompletition = 0;
-    for (let j in objParts) {
-        if (objParts[j].type == 'read') {
-            uxReadCompletition = uxReadCompletition + objParts[j].completed;
-            totalReads++;
-        } else if (objParts[j].type == 'quiz') {
-            uxQuizCompletition = uxQuizCompletition + objParts[j].completed;
-            totalQuiz++;
-        }
-    }
-    let porcentajeReadUx = (uxReadCompletition / totalReads) * 100;
-    let porcentajeQuizUx = (uxQuizCompletition / totalQuiz) * 100;
-
-    return {
-        reads: {
-            totalReads: totalReads,
-            readsCompleted: uxReadCompletition,
-            percent: porcentajeReadUx
-        },
-        quiz: {
-            totalQuiz: totalQuiz,
-            quizCompleted: uxQuizCompletition,
-            percent: porcentajeQuizUx
-        }
-    }
-}
 
 // Enlazando ambos select
-document.getElementById("sedes").addEventListener("change", function (e) {
+document.getElementById("sedes").addEventListener("change", function(e){
     sede = event.target.value;
-    if (sede !== "0") {
+    if(sede !== "0"){
         loadCohortsData(sede);
-    } else {
+    }else{
         alert("seleccione una sede");
     }
-    ;
+});
 
-    document.getElementById("generation").addEventListener("change", function (e) {
-        generation = event.target.value;
-        if (generation !== "0") {
-            if (generation === 'lim-2018-03-pre-core-pw') {
-                loadUsersData();
-                loadProgressData()
-
-                setTimeout(function () {
-                    printData(window.users, window.progress, 0, 10)
-                    pagination();
-                }, 1000)
-            } else {
-                alert("esta sede no tiene informacion");
-            }
-        } else {
-            alert("seleccione una sede");
+document.getElementById("generation").addEventListener("change", function(e){
+    generation = event.target.value;
+    if(generation !== "0"){
+        if(generation === 'lim-2018-03-pre-core-pw'){
+            loadUsersData();
+            loadProgressData()
+            
+            setTimeout(function(){
+                printData(window.users, window.progress, 0, 10)
+                pagination();
+            }, 1000)
+        }else{
+            alert("esta sede no tiene informacion");
         }
+    }else{
+        alert("seleccione una sede");
     }
-    )
+    
 });
