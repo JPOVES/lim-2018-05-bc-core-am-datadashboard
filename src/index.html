@@ -1,146 +1,103 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
-<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-<title>Data Dashboard</title>
-<link rel= "stylesheet" href="style.css">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,user-escalable=no, initial-scale=1, maximum-scale=1,minimum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">  
+    <title>Data Dashboard maquetacion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fontello.css">
+    <!--<link rel = "shortcut icon" type = "image/x-icon" href = "imagenes/cc.ico">-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous">-->
+
 </head>
 <!--Esqueleto de la página-->
 <body>
-<header>
-<section id="banner"><a href="#"><img src="fotos/logoLABORATORIA4.jpeg"></a></section>
-<section id="logo"><a href="#"><img src="fotos/alejandra.jpg"></a></section>
-<!--<p>Alejandra Ramirez</p>
-<br>
-<p>Training manager</p>-->
-<div id="user">
-<section id="userspace">
-<ul class="userspaceoptions">
-<li><a href="">Configuración</a></li>
-</ul>
-</section>
-</div>
-</header>
-<nav>
-<div id="menu">
-<ul class="navmenu">
-<!--<li><a href="">XXXX</a></li>-->
-<li><a href="">SEARCH LOCATION</a>
-<ul>
-<li><a href="">Guadalajara</a></li>
-<li><a href="">Lima</a>
-<ul>
-<li><a href="">2016-1</a></li>
-<li><a href="">2016-2</a></li>
-<li><a href="">2017-1</a></li>
-<li><a href="">2018-1</a>
-<ul>
-<li><a href="">A.M.</a>
-<ul>
-<li><a href="">Introduction</a></li>
-<li><a href="">Variables and data types</a></li>
-<li><a href="">UX desing</a></li>
-</li> 
-</ul>
-<li><a href="">P.M.</a></li> 
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="">México D.F.</a></li>
-<li><a href="">Santiago</a></li>
-<li><a href="">Sao Paoulo</a></li>
-</ul>
-</li>
-<!--<li><a href="">GENERATION</a>
-<ul>
-<li><a href="">Submenu1</a></li>
-<li><a href="">Submenu2</a></li>
-<li><a href="">Submenu3</a></li>
-<li><a href="">Submenu4</a></li>
-</ul>
-</li>-->
-<li><a href="">HELP</a></li>
-</ul>
-</div>
-</nav>
-<main>
-<div id="grafic1">
-<section id="students"><p><strong>1. % de estudiantes actules</strong></p></section>
-</div>
-<div id="searchstudent">
-<button type = "submit" id = "search" value = " ">Buscar</button>
-<input type="search" id="input-searchstudent" placeholder= "Buscar estudiante"> 
-</div> 
-<div id="table2">
-<section id="students"><p><strong>2. % de Completitud general de cursos</strong></p></section>
-<table>
-<thead>
-<tr>
-<th>Id</th>
-<th>SignupCohort</th>
-<th>Timezone</th>
-<th>Name</th>
-<th>Locale</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody id="tbody">
-</tbody>
-</table>
-</div>
-<div id="curse1">
-<section id="students"><p><strong>3. Introducción</strong></p></section>
-<p>
-f
-<br>
-f
-<br>
-f
-<br>
-f
-<br>
-f
-<br>
-</p>
-</div>
-<div id="curse2">
-<section id="students"><p><strong>4. Variables y data types</strong></p></section>
-</div>
-<p>
-f
-<br>
-f
-<br>
-f
-<br>
-f
-<br>
-f
-<br>
-</p>
-<div id="curse3">
-<section id="students"><p><strong>5. UX-desing</strong></p></section>
-</div>
-<p>
-f
-<br>
-f
-<br>
-f
-<br>
-f
-<br>
-f
-<br>
-</p>
-<!--<aside id="left"></aside>
-<article></article>
-<aside id="rigth"></aside>-->
-</main>
-<footer><p>© Diseñado por <a target = "_blank" href = "https://es-la.facebook.com/">Genesis Nole y Jessica Poves </a>- LABORATORIA</p></footer>
-<script src="main.js"></script>
+    <div id="totalContenedor">
+        <header>
+            <section id="LaboratoriaLogo">
+                <img src="imagen/LaboratoriaLogoNormalSinTexto.png">
+            </section>
 
+            <!--<img src="fotos/logoLABORATORIA4.jpeg">-->
+        </header>
+        <!--<nav>
+            
+    </nav>-->
+        <aside>
+            <h2></h2>
+            <div id="menu_sedes">
+                <form>
+                    <img src="imagen/alejandra.jpg" class='imgRedonda1'>
+                    <h3>Alejandra Ramirez
+                        <br>-Training Manager-</h3>
+                    <br>
+                    <h2 class="icon-sede"> LOCALS:</h2>
+                    <select id="locals">
+                        <option value="0">Select</option>
+                        <option value="gdl">Guadalajara</option>
+                        <option value="lim">Lima</option>
+                        <option value="cdmx">México DF</option>
+                        <option value="spl">Sao Paulo</option>
+                        <option value="scl">Santiago De Chile</option>
+                    </select>
+
+                    <h2 class="icon-generation"> GENERATION:</h2>
+                    <select id="generation">
+                        <option value="">Select</option>
+                    </select>
+
+                    <h2 class="icon-courses"> COURSES:</h2>
+                    <select id="courses">
+                        <option value="">Select</option>
+                        <option value="0">Introduction</option>
+                        <option value="1">Varibles</option>
+                        <option value="2">Ux-Desing</option>
+                    </select>
+                </form>
+            </div>
+        </aside>
+        <section id="contenidoTablas">
+            <h2>-</h2>
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="display: none;">Id</th>
+                    <th>SignupCohort</th>
+                    <th>Name</th>
+                    <th>Course General</th>
+                    <th>Progress</th>
+                    <th>Introducción</th>
+                    <th>Lecturas</th>
+                    <th>Quizes</th>
+                    <th>Variables</th>
+                    <th>Lecturas</th>
+                    <th>Quizz</th>
+                    <th>Ejercicios</th>
+                    <th>Ux Design</th>
+                    <th>Lecturas</th>
+                    <th>Quizz</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+            <!--PAGINACIÓN-->
+            <div id="pagination">
+                <a id="prev" href="#">&laquo;</a>
+                <a id="first" href="#">First</a>
+                <a id="last" href="#">Last</a>
+                <a id="next" href="#">&raquo;</a>
+                <input id="total_row" type="hidden">
+                <input id="current_step" type="hidden" value="15">
+            </div>
+        </section>
+        <script src="main.js"></script>
 </body>
-</html>
+<footer>
+    <h2>© Diseñado por Genesis Nole y Jessica Poves - LABORATORIA</h2>
+</footer>
