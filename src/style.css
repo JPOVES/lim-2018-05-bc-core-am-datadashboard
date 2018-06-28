@@ -94,7 +94,6 @@ width: 180px;
 
 #contenidoTablas {
     width: 1050px;
-    height: 500px;
     float: right;
     background-color: white;
     margin-top: 10px;
@@ -129,7 +128,25 @@ width: 180px;
 
 
 /*clear: both hace que el pie depagina no interfiera
-con aside y contenido de tablas */    
+con aside y contenido de tablas */   
+/* Pagination links */
+#pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+  
+  /* Style the active/current link */
+#pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+  /* Add a grey background color on mouse-over */
+#pagination a:hover:not(.active) {
+    background-color: #ddd;
+} 
 footer {
     background-color: rgb(10, 1, 1);
     clear: both;
