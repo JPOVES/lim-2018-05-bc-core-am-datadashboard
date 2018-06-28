@@ -232,3 +232,5 @@ document.getElementById("generation").addEventListener("change", function(e){
     }
     
 });
+
+// deberioa unirse
