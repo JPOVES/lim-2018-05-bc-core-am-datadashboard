@@ -17,35 +17,40 @@ function loadCohortsData(sede) {
 }
 
 //TRAE LOS DATOS DE LAS ESTUDIANTES
-function loadUsersData() {                                                              
+function loadUsersData(cohortId) {                                                              
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/users.json", true);
+    xhr.open("GET", `../data/cohorts/${cohortId}/users.json`, true);
     xhr.send();
     xhr.onreadystatechange = function () {
         //SI EL CODIGO STATUS ES 200 (que todo esta ok) CAPTURO LA RESPUESTA EN UNA VARIABLE
         if (xhr.readyState == 4 && xhr.status == 200) {
             users = JSON.parse(xhr.responseText);
+            console.log(users);
         }
     };
 }
-
+loadUsersData('lim-2018-03-pre-core-pw');
 // TRAE DATOS DE PROGRESO DE CADA ALUMNA
-function loadProgressData() {
+function loadProgressData(cohortId) {
     const xhr_progress = new XMLHttpRequest();
-    xhr_progress.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progress.json", true);
+    xhr_progress.open("GET", `../data/cohorts/${cohortId}/progress.json`, true);
     xhr_progress.send();
     xhr_progress.onreadystatechange = function () {
         //SI EL CODIGO STATUS ES 200 (que todo esta ok) CAPTURO LA RESPUESTA EN UNA VARIABLE
         if (xhr_progress.readyState == 4 && xhr_progress.status == 200) {
             //SI HAY UNA RESPUESTA EJECUTO ESTA FUNCION PARA ARMAR LAS UI CON LOS DATOS DE USUARIOS Y PROGRESOS
             //PARSEO LA RESPUESTA, OBTENIENDO UN OBJETO QUE A SU VEZ LO TRANSFORMO EN ARRAY PARA PODER USAR SUS POSICIONES 
-            progress = Object.values(JSON.parse(xhr_progress.responseText));
+            //progress = Object.values(JSON.parse(xhr_progress.responseText));
+            progress = JSON.parse(xhr_progress.responseText);
+            //console.log(Object.values(JSON.parse(xhr_progress.responseText)));
         }
     }
 }
+loadProgressData('lim-2018-03-pre-core-pw')
 
-const usersWithStats = window.computeUsersStats(window.users, window.progress);
-
+setTimeout(() =>{
+    const usersWithStats = window.computeUsersStats(window.users, window.progress);
+},1000);
 // MUESTRA DATOS DE USUARIOS Y PROGRESO EN LA INTERFAZ
 function pagination() {
     let total_row = document.getElementById('total_row').value = users.length;
@@ -93,11 +98,8 @@ function printData(users, progress, init, final) {
                 
                 body.innerHTML += `
                 <tr>
-                    <td style="display: none;">users[i].id}</td>
-                    <td>${users[i].signupCohort}</td>
-                    <td style="display: none;">${users[i].timezone}</td>
                     <td>${users[i].name}</td>
-                    <td>${courseGeneral["0"].coursesIndex.intro.title}</td>
+                    <td style="display: none;">${courseGeneral["0"].coursesIndex.intro.title}</td>
                     <td>${progress[i].intro.percent}</td>
                     <td>${progress[i].intro.units["01-introduction"].percent}</td>
                     <td>${introductionStats.reads.percent}</td>
@@ -114,9 +116,6 @@ function printData(users, progress, init, final) {
             } else {
                 body.innerHTML += `
                 <tr>
-                    <td style="display: none;">users[i].id}</td>
-                    <td>${users[i].signupCohort}</td>
-                    <td style="display: none;">${users[i].timezone}</td>
                     <td>${users[i].name}</td>
                     <td>-----</td>
                     <td>------</td>
@@ -219,7 +218,7 @@ const uxCourse = (unitsParts) => {
         reads: {
             totalReads: totalReads,
             readsCompleted: uxReadCompletition,
-            percent: porcentajeReadUx
+            percent:  Math.round(porcentajeReadUx)
         },
         quiz: {
             totalQuiz: totalQuiz,
@@ -240,11 +239,12 @@ document.getElementById("locals").addEventListener("change", function (e) {
 });
 
 document.getElementById("generation").addEventListener("change", function(e){
-    generation = event.target.value;
+    console.log(event.target.value);
+    const generation = event.target.value;
     if(generation !== "0"){
         if(generation === 'lim-2018-03-pre-core-pw'){
-            loadUsersData();
-            loadProgressData()
+            loadUsersData(generation);
+            loadProgressData(generation)
             
             setTimeout(function(){
                 printData(window.users, window.progress, 0, 10)
@@ -256,6 +256,8 @@ document.getElementById("generation").addEventListener("change", function(e){
     } else {
         alert("seleccione una sede");
     }
-    
+  
 });
+    
+
 
