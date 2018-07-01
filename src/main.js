@@ -25,11 +25,9 @@ function loadUsersData(cohortId) {
         //SI EL CODIGO STATUS ES 200 (que todo esta ok) CAPTURO LA RESPUESTA EN UNA VARIABLE
         if (xhr.readyState == 4 && xhr.status == 200) {
             users = JSON.parse(xhr.responseText);
-            console.log(users);
         }
     };
 }
-loadUsersData('lim-2018-03-pre-core-pw');
 // TRAE DATOS DE PROGRESO DE CADA ALUMNA
 function loadProgressData(cohortId) {
     const xhr_progress = new XMLHttpRequest();
@@ -42,34 +40,112 @@ function loadProgressData(cohortId) {
             //PARSEO LA RESPUESTA, OBTENIENDO UN OBJETO QUE A SU VEZ LO TRANSFORMO EN ARRAY PARA PODER USAR SUS POSICIONES 
             //progress = Object.values(JSON.parse(xhr_progress.responseText));
             progress = JSON.parse(xhr_progress.responseText);
-            //console.log(Object.values(JSON.parse(xhr_progress.responseText)));
         }
     }
 }
-loadProgressData('lim-2018-03-pre-core-pw')
 
-setTimeout(() =>{
-    const usersWithStats = window.computeUsersStats(window.users, window.progress);
-},1000);
+function tableDetailGeneral(usersWithStats, init, final){
+    const tbody = document.getElementById("tbody_detail_general");
+    let body = ``;
+    usersWithStats.forEach( (element, i) => {
+        if(element.role == 'student'){
+            if (i >= init && i < final) {
+                body += `<tr>
+                            <td>${element.name}</td>
+                            <td>${element.stats.reads.total}</td>
+                            <td>${element.stats.reads.completed}</td>
+                            <td>${element.stats.reads.percent}</td>
+                            <td>${element.stats.quizzes.total}</td>
+                            <td>${element.stats.quizzes.completed}</td>
+                            <td>${element.stats.quizzes.percent}</td>
+                            <td>${element.stats.exercises.total}</td>
+                            <td>${element.stats.exercises.completed}</td>
+                            <td>${element.stats.exercises.percent}</td>
+                            <td>${element.stats.percent}</td>
+                        </tr>`;
+            }
+        }
+    });
+    tbody.innerHTML = body;
+}
+
+function tableMain(usersWithStats, init, final){
+    const tbody = document.getElementById("table_main_body");
+    let body = ``;
+    usersWithStats.forEach( (element, i) => {
+        if(element.role == 'student'){ 
+            if (i >= init && i < final) {
+                body += `<tr>
+                            <td>${element.name}</td>
+                            <td>${element.stats.percent}</td>
+                </tr>`;
+            }
+        }
+    });
+    tbody.innerHTML = body;
+}
+
+function infoDetalledByCourse(usersWithStats, init, final){
+    const tbody = document.getElementById("tableInfoXCurso_tbody");
+    let body = ``;
+    /*usersWithStats.forEach((element, i) =>{
+        if(element.role == 'student'){ 
+            if (i >= init && i < final) {
+                body += `<tr>
+                            <td>${element.name}</td>
+                            <td>${progress[i].intro.percent}</td>
+                            <td>${progress[i].intro.units["01-introduction"].percent}</td>
+                            <td>${introductionStats.reads.percent}</td>
+                            <td>${introductionStats.quiz.percent}</td>
+                            <td>${progress[i].intro.units["02-variables-and-data-types"].percent}</td>
+                            <td>${variablesStats.reads.percent}</td>
+                            <td>${variablesStats.quiz.percent}</td>
+                            <td>${variablesStats.exercise.percent}</td>
+                            <td>${progress[i].intro.units["03-ux-design"].percent}</td>
+                            <td>${uxStats.reads.percent}</td>
+                            <td>${uxStats.quiz.percent}</td>
+                        </tr>`;
+            }
+        }
+    });*/
+} 
 // MUESTRA DATOS DE USUARIOS Y PROGRESO EN LA INTERFAZ
-function pagination() {
+function pagination(table) {
     let total_row = document.getElementById('total_row').value = users.length;
+    document.getElementById('current_step').value = 10;
     //MUESTRA LOS PRIMEROS 15 USUARIOS
     //EVENTOS DE PAGINACIÓN
     //DEBERIA IMPRIMIR LOS 15 USUARIOS ANTERIORES
     const prev = document.getElementById('prev').addEventListener('click', function () {
-
-        printData(window.users, window.progress, init, final);
+        if(table == 'tableMain'){
+            tableMain(window.usersWithStats, init, final)
+        }else if(table == "tableDetailGeneral"){
+            tableDetailGeneral(window.usersWithStats, init, final);
+        }else{
+            printData(window.users, window.progress, init, final);
+        }
     });
     //DEBERIA IMPRIMIR LOS 15 PRIMEROS USUARIOS
     const first = document.getElementById('first').addEventListener('click', function () {
-        printData(window.users, window.progress, 0, 10);
+        if(table == 'tableMain'){
+            tableMain(window.usersWithStats, init, final)
+        }else if(table == "tableDetailGeneral"){
+            tableDetailGeneral(window.usersWithStats, init, final);
+        }else{
+            printData(window.users, window.progress, 0, 10);
+        }
     });
     //IMPRIME SOLO LOS 15 ULTIMOS USUARIOS
     const last = document.getElementById('last').addEventListener('click', function () {
         let final = total_row;
         let init = final - 10;
-        printData(window.users, window.progress, init, final);
+        if(table == 'tableMain'){
+            tableMain(usersWithStats, init, final)
+        }else if(table == "tableDetailGeneral"){
+            tableDetailGeneral(window.usersWithStats, init, final);
+        }else{
+            printData(window.users, window.progress, init, final);
+        }
     });
     //IMPRIME LOS 15 SIGUIENTES USUARIOS
     const next = document.getElementById('next').addEventListener('click', function () {
@@ -78,158 +154,30 @@ function pagination() {
         let init = parseInt(current_step);
         let final = init + 10;
         document.getElementById('current_step').value = final;
-        printData(window.users, window.progress, init, final);
+        if(table == 'tableMain'){
+            tableMain(window.usersWithStats, init, final)
+        }else if(table == "tableDetailGeneral"){
+            tableDetailGeneral(window.usersWithStats, init, final);
+        }else{
+            printData(window.users, window.progress, init, final);
+        }
     });
 }
-//IMPRIME LOS DATOS EN LA TABLA TOMANDO COMO PARAMETROS UN INTERVALO 
-function printData(users, progress, init, final) {
-    let body = document.getElementById('tbody');
-    body.innerHTML = '';
-    let cohortId = document.getElementById("generation").value;
-    let courseGeneral = generalCourse(cohortId); 
-    
-    for (var i = 0; i < users.length; i++) {
-        if (i >= init && i < final) {
-            if (progress[i].intro) {
-                // ME DEVUELVE LA POSICION INFORMACION DE UNITS 
-                const introductionStats = introductionCourse(progress[i].intro.units["01-introduction"].parts);
-                const variablesStats = variablesCourse(progress[i].intro.units["02-variables-and-data-types"].parts);
-                const uxStats = uxCourse(progress[i].intro.units["03-ux-design"].parts);
-                
-                body.innerHTML += `
-                <tr>
-                    <td>${users[i].name}</td>
-                    <td style="display: none;">${courseGeneral["0"].coursesIndex.intro.title}</td>
-                    <td>${progress[i].intro.percent}</td>
-                    <td>${progress[i].intro.units["01-introduction"].percent}</td>
-                    <td>${introductionStats.reads.percent}</td>
-                    <td>${introductionStats.quiz.percent}</td>
-                    <td>${progress[i].intro.units["02-variables-and-data-types"].percent}</td>
-                    <td>${variablesStats.reads.percent}</td>
-                    <td>${variablesStats.quiz.percent}</td>
-                    <td>${variablesStats.exercise.percent}</td>
-                    <td>${progress[i].intro.units["03-ux-design"].percent}</td>
-                    <td>${uxStats.reads.percent}</td>
-                    <td>${uxStats.quiz.percent}</td>
-                </tr>`;
-                
-            } else {
-                body.innerHTML += `
-                <tr>
-                    <td>${users[i].name}</td>
-                    <td>-----</td>
-                    <td>------</td>
-                </tr>`;
-            }
-        }
-    }
-}
 
-const generalCourse = (cohortsId) => {
+const loadCoursesData = (cohortsId) => {
+    const selectCourses = document.getElementById("courses");
     const courses = window.cohorts.filter((element) => {
         if (element.id == cohortsId) {
             return element;
         }
     });
-    return courses;
-}
-const introductionCourse = (unitsParts) => {
-    let objParts = Object.values(unitsParts);
-    let totalReads = 0, introReadCompletition = 0, totalQuiz = 0, introQuizCompletition = 0;
-    for (let j in objParts) {
-        if (objParts[j].type == 'read') {
-            introReadCompletition = introReadCompletition + objParts[j].completed;
-            totalReads++;
-            
-        } else if (objParts[j].type == 'quiz') {
-            introQuizCompletition = introQuizCompletition + objParts[j].completed;
-            totalQuiz++;
-        }
-    }
-    let porcentajeReadIntro = (introReadCompletition / totalReads) * 100;
-    let porcentajeQuizIntro = (introQuizCompletition / totalQuiz) * 100;
-    return {
-        reads: {
-            totalReads: totalReads,
-            readsCompleted: introReadCompletition,
-            percent: porcentajeReadIntro
-        },
-        quiz: {
-            totalQuiz: totalQuiz,
-            quizCompleted: introQuizCompletition,
-            percent: porcentajeQuizIntro
-        }
-    } 
+    selectCourses.innerHTML = `<option value="0">Select</option>`;
+    selectCourses.innerHTML += `<option value="${courses["0"].coursesIndex.intro.title}">${courses["0"].coursesIndex.intro.title}</option>`;
 }
 
-const variablesCourse = (unitsParts) => {
-    let objParts = Object.values(unitsParts);
-    let totalReads = 0, variablesReadCompletition = 0, totalQuiz = 0, variablesQuizCompletition = 0, 
-        varExercisesCompletition = 0;
-    for (let j in objParts) {
-        if (objParts[j].type == 'read') {
-            variablesReadCompletition = variablesReadCompletition + objParts[j].completed;
-            totalReads++;
-        } else if (objParts[j].type == 'quiz') {
-            variablesQuizCompletition = variablesQuizCompletition + objParts[j].completed;
-            totalQuiz++;
-        } else if (objParts[j].type == 'practice') {
-            objParts[j].exercises ? varExercisesCompletition = varExercisesCompletition + objParts[j].completed : false;
-        }
-    }
-    let porcentajeReadVar = (variablesReadCompletition / totalReads) * 100;
-    let porcentajeQuizVar = (variablesQuizCompletition / totalQuiz) * 100;
-    let porcentajeExercisesVar = (varExercisesCompletition) * 100;
-
-    return {
-        reads: {
-            totalReads: totalReads,
-            readsCompleted: variablesReadCompletition,
-            percent: porcentajeReadVar
-        },
-        quiz: {
-            totalQuiz: totalQuiz,
-            quizCompleted: variablesQuizCompletition,
-            percent: porcentajeQuizVar
-        },
-        exercise: {
-            exerciseCompleted: varExercisesCompletition,
-            percent: porcentajeExercisesVar
-        }
-    }
-}
-
-const uxCourse = (unitsParts) => {
-    let objParts = Object.values(unitsParts);
-    let totalReads = 0, uxReadCompletition = 0, totalQuiz = 0, uxQuizCompletition = 0;
-    for (let j in objParts) {
-        if (objParts[j].type == 'read') {
-            uxReadCompletition = uxReadCompletition + objParts[j].completed;
-            totalReads++;
-        } else if (objParts[j].type == 'quiz') {
-            uxQuizCompletition = uxQuizCompletition + objParts[j].completed;
-            totalQuiz++;
-        }
-    }
-    let porcentajeReadUx = (uxReadCompletition / totalReads) * 100;
-    let porcentajeQuizUx = (uxQuizCompletition / totalQuiz) * 100;
-
-    return {
-        reads: {
-            totalReads: totalReads,
-            readsCompleted: uxReadCompletition,
-            percent:  Math.round(porcentajeReadUx)
-        },
-        quiz: {
-            totalQuiz: totalQuiz,
-            quizCompleted: uxQuizCompletition,
-            percent: porcentajeQuizUx
-        }
-    }
-}
 
 // Enlazando ambos select
-document.getElementById("locals").addEventListener("change", function (e) {
+document.getElementById("locals").addEventListener("change", function (event) {
     sede = event.target.value;
     if(sede !== "0"){
         loadCohortsData(sede);
@@ -238,26 +186,79 @@ document.getElementById("locals").addEventListener("change", function (e) {
     }
 });
 
-document.getElementById("generation").addEventListener("change", function(e){
-    console.log(event.target.value);
+var tableMainElement = document.getElementById('table_main'),
+    tableDetailGeneralElement = document.getElementById('table_detail_general'),
+    tableInfoXCursoElement = document.getElementById("tableInfoXCurso"),
+    paginationElement = document.getElementById('pagination'),
+    filterBtn = document.getElementById("filterBtn");
+
+    infoTotalBtn = document.getElementById("infoTotalBtn");
+    infoGeneralBtn = document.getElementById("infoGeneralBtn");
+    infoXcursoBtn = document.getElementById("infoXcursoBtn");
+
+document.getElementById("generation").addEventListener("change", function(event){
     const generation = event.target.value;
     if(generation !== "0"){
         if(generation === 'lim-2018-03-pre-core-pw'){
             loadUsersData(generation);
             loadProgressData(generation)
-            
-            setTimeout(function(){
-                printData(window.users, window.progress, 0, 10)
-                pagination();
-            }, 1000)
+            loadCoursesData(generation);
         } else {
             alert("esta sede no tiene informacion");
         }
     } else {
         alert("seleccione una sede");
+    } 
+});
+
+document.getElementById("courses").addEventListener("change", event => {
+    const course = event.target.value;
+    if(course != "0"){
+        if(course ===  "Introducción a la programación (con JavaScript)"){
+                usersWithStats = window.computeUsersStats(window.users, window.progress);
+                tableMain(window.usersWithStats, 0, 10);
+                pagination('tableMain');
+                tableMainElement.style.display = "block";
+                paginationElement.style.display = "block";
+                filterBtn.style.display = "block";
+        }
+    }else {
+        alert("seleccione un curso");
     }
-  
+});
+
+document.getElementById("infoTotalBtn").addEventListener("click", e => {
+
+    tableDetailGeneralElement.style.display = "none";
+    tableInfoXCursoElement.style.display = "none";
+    tableMainElement.style.display = "block";
+
+    infoTotalBtn.style.display = "none";
+    infoXcursoBtn.style.display = "block";
+    infoGeneralBtn.style.display = "block";
+    
+});
+
+document.getElementById("infoGeneralBtn").addEventListener("click", e => {
+    tableMainElement.style.display = "none";
+    tableInfoXCursoElement.style.display = "none";
+    
+    tableDetailGeneral(window.usersWithStats, 0, 10);
+    pagination("tableDetailGeneral");
+    tableDetailGeneralElement.style.display = "block";
+    
+    infoGeneralBtn.style.display = "none";
+    infoTotalBtn.style.display = "block";
+    infoXcursoBtn.style.display = "block";
 });
     
+document.getElementById("infoXcursoBtn").addEventListener("click", e => {   
+    tableMainElement.style.display = "none";
+    tableDetailGeneralElement.style.display = "none";
+    tableInfoXCursoElement.style.display = "block";
 
+    infoXcursoBtn.style.display = "none";
+    infoGeneralBtn.style.display = "block";
+    infoTotalBtn.style.display = "block";
+});
 

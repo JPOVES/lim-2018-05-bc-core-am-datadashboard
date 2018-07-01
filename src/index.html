@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="fontello.css">
 </head>
 <!--Esqueleto de la página-->
-
 <body>
 	<div id="totalContenedor">
 		<header>
@@ -45,60 +44,110 @@
 				</form>
 			</div>
 		</aside>
-		<!--<section>
-      <h2>-</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Progress</th>
-            <th>Lecturas</th>
-            <th>Quizz</th>
-            <th>Ejercicios</th>
-          </tr>
-        </thead>
-        <tbody id="tabla_principal">
-        </tbody>
-      </table>-->
-		<section id="contenidoTablas">
-			<h2>-</h2>
-			<table class="table table-bordered">
+		<section>
+			<div id="filterBtn" style="display: none">
+				<button id="infoTotalBtn" style="display: none">Informacion Primaria</button>
+				<button id="infoGeneralBtn">Informacion General</button>
+				<button id="infoXcursoBtn">Informacion por curso</button>
+			</div>
+			<table id="table_detail_general" class="table table-bordered" style="display: none;">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th style="display: none;">Course General</th>
-						<th>Progress</th>
-						<th>Introducción</th>
-						<th>Lecturas</th>
-						<th>Quizes</th>
-						<th>Variables</th>
-						<th>Lecturas</th>
-						<th>Quizz</th>
-						<th>Ejercicios</th>
-						<th>Ux Design</th>
-						<th>Lecturas</th>
-						<th>Quizz</th>
+						<th rowspan="2">Name</th>
+						<th colspan="3" >Lecturas</th>
+						<th colspan="3">Quizz</th>
+						<th colspan ="3">Ejercicios</th>
+						<th rowspan="2">Progreso Total</th>
+					</tr>
+					<tr>
+						<th>total</th>
+						<th>completados</th>
+						<th>percent</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>percent</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>percent</th>
 					</tr>
 				</thead>
-				<tbody id="tbody">
+				<tbody id="tbody_detail_general">
+				</tbody>
+			</table>
+			<table id="table_main" style="display: none">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Progresso total</th>
+						<th>Detalle</th>
+					</tr>
+				</thead>
+				<tbody id="table_main_body">
+
+				</tbody>
+			</table>
+			<table id="tableInfoXCurso" class="table table-bordered" style="display: none">
+				<thead>
+					<tr>
+						<th rowspan="3">Name</th>	
+						<th colspan="5">Introducción</th>
+						<th colspan="7">Variables</th>
+						<th colspan="5">Ux Design</th>
+					</tr>
+					<tr>
+						<th colspan="2">Lecturas</th>
+						<th colspan="2">Quizzes</th>
+						<th rowspan="2">Porcentaje</th>
+						<th colspan="2">Lecturas</th>
+						<th colspan="2">Ejercicios</th>
+						<th colspan="2">Quizzes</th>
+						<th rowspan="2">Porcentaje</th>
+						<th colspan="2">Lecturas</th>
+						<th colspan="2">Quizzes</th>
+						<th rowspan="2">Porcentaje</th>
+					</tr>
+					<tr>
+						<th>Total</th>
+						<th>completados</th>
+
+						<th>total</th>
+						<th>completados</th>
+
+						<th>total</th>
+						<th>completados</th>
+
+						<th>total</th>
+						<th>completados</th>
+
+						<th>total</th>
+						<th>completados</th>
+
+						<th>total</th>
+						<th>completados</th>
+
+						<th>total</th>
+						<th>completados</th>
+						</tr>
+				</thead>
+				<tbody id="tableInfoXCurso_tbody">
 				</tbody>
 			</table>
 			<!--PAGINACIÓN-->
-			<div id="pagination">
+			<div id="pagination" style="display: none">
 				<a id="prev" href="#">&laquo;</a>
 				<a id="first" href="#">First</a>
 				<a id="last" href="#">Last</a>
 				<a id="next" href="#">&raquo;</a>
 				<input id="total_row" type="hidden">
-				<input id="current_step" type="hidden" value="10">
+				<input id="current_step" type="hidden">
 			</div>
 		</section>
-
 	</div>
-		<footer>
-			<h2>© Diseñado por Genesis Nole y Jessica Poves - LABORATORIA</h2>
-		</footer>
-		<script src="data.js"></script>
-		<script src="main.js"></script>
+	<footer>
+		<h2>© Diseñado por Genesis Nole y Jessica Poves - LABORATORIA</h2>
+	</footer>
+	<script src="data.js"></script>
+	<script src="main.js"></script>
 </body>
+
 </html>
