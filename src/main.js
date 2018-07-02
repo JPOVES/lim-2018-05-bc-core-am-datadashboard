@@ -340,7 +340,7 @@ document.getElementById("courses").addEventListener("change", event => {
                 userWithStatsDefault = window.processCohortData(options);
                 tableMain(window.userWithStatsDefault, 0, 10);
                 pagination('tableMain', window.userWithStatsDefault);
-                tableMainElement.style.display = "block";
+                tableMainElement.style.display = "inline-block";
                 paginationElement.style.display = "block";
                 filterBtn.style.display = "block";   
                 orderContainer.style.display = "block";            
@@ -362,7 +362,7 @@ document.getElementById("infoPrimaryBtn").addEventListener("click", e => {
     pagination('tableMain', window.userWithStatsDefault);
     tableDetailGeneralElement.style.display = "none";
     tableInfoXCursoElement.style.display = "none";
-    tableMainElement.style.display = "block";
+    tableMainElement.style.display = "inline-block";
 
     infoPrimaryBtn.disabled = true;
     infoPrimaryBtn.style.cursor = "not-allowed";
@@ -381,7 +381,7 @@ document.getElementById("infoGeneralBtn").addEventListener("click", e => {
     pagination("tableDetailGeneral", window.userWithStatsDefault);
     tableMainElement.style.display = "none";
     tableInfoXCursoElement.style.display = "none";
-    tableDetailGeneralElement.style.display = "block";
+    tableDetailGeneralElement.style.display = "inline-block";
     
     infoGeneralBtn.disabled = true;
     infoGeneralBtn.style.cursor = "not-allowed";
@@ -399,7 +399,7 @@ document.getElementById("infoXcursoBtn").addEventListener("click", e => {
     pagination("tableDetalledByCourse", window.userWithStatsDefault);
     tableMainElement.style.display = "none";
     tableDetailGeneralElement.style.display = "none";
-    tableInfoXCursoElement.style.display = "block";
+    tableInfoXCursoElement.style.display = "inline-block";
 
     infoXcursoBtn.disabled= true;
     infoXcursoBtn.style.cursor= "not-allowed";
@@ -409,7 +409,6 @@ document.getElementById("infoXcursoBtn").addEventListener("click", e => {
 
     infoPrimaryBtn.disabled = false;
     infoPrimaryBtn.style.cursor = "pointer";
-    debugger;
 });
 
 
