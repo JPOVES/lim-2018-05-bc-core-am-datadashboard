@@ -9,12 +9,14 @@ window.computeUsersStats = (users, progress, courses) => {
                 intro.units[el].parts = parts;
                 return intro.units[el];
             })
+            //contadores generales para la propiedad stats
             let totalUnits = orderedUnits.length;
             let totalRdsGeneral = 0, totalQuzGeneral = 0, totalExGeneral = 0, completedRdsGeneral = 0, 
                 completedQuzGeneral = 0, completedExGeneral = 0, scoreSumGeneral = 0, percentGeneral = 0;
             let obj = orderedUnits.map((e, i) => {
                 let parts = e.parts;
                 percentGeneral = percentGeneral + e.percent;
+                //contadores x unidades para la propiedad statsXcurso
                 let reads= {}, quizzes = {}, exercises = {}, statsByCourse = {}
                 totalEx = 0, completedEx = 0, percentEx = 0, 
                 totalRds = 0, completedRds = 0, percentRds = 0,
@@ -35,7 +37,7 @@ window.computeUsersStats = (users, progress, courses) => {
                                         completedExGeneral++
                                     }
                                 }
-                                exercises.total = totalEx;
+                                exercises.total= totalEx;
                                 exercises.completed = completedEx;
                                 percentEx = (completedEx / totalEx) * 100;
                                 exercises.percent = percentEx;
@@ -78,14 +80,14 @@ window.computeUsersStats = (users, progress, courses) => {
                 exercises: {
                     total: totalExGeneral,
                     completed: completedExGeneral,
-                    percent: Math.round((completedExGeneral / totalQuzGeneral) * 100)
+                    percent: Math.round((completedExGeneral / totalExGeneral) * 100)
                 },
                 quizzes: {
                     total: totalQuzGeneral,
                     completed: completedQuzGeneral,
                     percent: Math.round((completedQuzGeneral / totalQuzGeneral) * 100),
                     scoreSum: scoreSumGeneral,
-                    scoreAvg: Math.round(scoreSumGeneral / completedQuzGeneral)
+                    scoreAvg: (scoreSumGeneral == 0 && completedQuzGeneral == 0) ? 0 : Math.round(scoreSumGeneral / completedQuzGeneral)
                 },
                 reads: {
                     total: totalRdsGeneral,
@@ -101,7 +103,68 @@ window.computeUsersStats = (users, progress, courses) => {
         }
         return user;
     });
-    console.log(usersWithStats);
+    //console.log(usersWithStats);
     return usersWithStats;
 
+}
+window.sortUsers = (users, orderBy = 'name', orderDirection = 'ASC') => {
+
+    const orderByProperty = (property, orderDirection) => {
+        let sortOrder = 1;
+        if(orderDirection === "DESC"){ sortOrder = -1 }
+        
+        if(property == "name"){
+           return function (a,b) {
+            var result = (a["name"] < b["name"]) ? -1 : (a["name"] > b["name"]) ? 1 : 0;
+            return result * sortOrder;
+           }
+        }else if(property == "percent"){
+            return function (a,b) {
+                var result = (a['stats'].percent < b['stats'].percent) ? -1 : (a['stats'].percent > b['stats'].percent) ? 1 : 0;
+                return result * sortOrder;
+            }
+        }else if(property == "exercises"){
+          return function (a,b) {
+            var result = (a['stats'].exercises.percent < b['stats'].exercises.percent) ? -1 : (a['stats'].exercises.percent > b['stats'].exercises.percent) ? 1 : 0;
+            return result * sortOrder;
+           }
+        }else if(property == "quizzes"){
+            return function (a,b) {
+                var result = (a['stats'].quizzes.percent < b['stats'].quizzes.percent) ? -1 : (a['stats'].quizzes.percent > b['stats'].quizzes.percent) ? 1 : 0;
+                return result * sortOrder;
+            }
+        }else if(property == "scoreAvg"){
+            return function (a,b) {
+                var result = (a['stats'].quizzes.scoreAvg < b['stats'].quizzes.scoreAvg) ? -1 : (a['stats'].quizzes.scoreAvg > b['stats'].quizzes.scoreAvg) ? 1 : 0;
+                return result * sortOrder;
+            }
+        }else if(property == "reads"){
+            return function (a,b) {
+                var result = (a['stats'].reads.percent < b['stats'].reads.percent) ? -1 : (a['stats'].reads.percent > b['stats'].reads.percent) ? 1 : 0;
+                return result * sortOrder;
+            }
+        }
+       
+    }
+    let usersOrdered = users.sort(orderByProperty(orderBy, orderDirection))
+    return usersOrdered;
+}
+
+window.filterUsers = (users, search = null) => {
+    if(search != null){
+        let usersFiltered = users.filter( user => {
+            if(user.name.includes(search)){
+                return user;
+            }
+        });
+        return usersFiltered;
+    }
+    return users;
+}
+
+window.processCohortData = options => {
+    let users = window.computeUsersStats(options.cohortData.users, options.cohortData.progress);
+    users = window.sortUsers(users, options.orderBy, options.orderDirection);
+    users = window.filterUsers(users, options.search);
+    return users;
 }

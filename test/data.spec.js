@@ -77,7 +77,11 @@ describe('data', () => {
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
 
-    it('debería retornar arreglo de usuarios ordenado por nombre ASC');
+    const processed = computeUsersStats(users, progress, courses);
+    
+    it('debería retornar arreglo de usuarios ordenado por nombre ASC', () => {
+
+    });
     it('debería retornar arreglo de usuarios ordenado por nombre DESC');
     it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC');
     it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC');

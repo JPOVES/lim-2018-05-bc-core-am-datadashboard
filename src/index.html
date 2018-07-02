@@ -45,17 +45,36 @@
 			</div>
 		</aside>
 		<section>
-			<div id="filterBtn" style="display: none">
-				<button id="infoTotalBtn" style="display: none">Informacion Primaria</button>
+			<div id="filterBtn" style="display: none;">
+				<button id="infoPrimaryBtn" disabled="true" style="cursor: not-allowed">Informacion Primaria</button>
 				<button id="infoGeneralBtn">Informacion General</button>
 				<button id="infoXcursoBtn">Informacion por curso</button>
+			</div>
+			<div id="order_contenedor" style="display: none">
+				<label for="orderby">Ordenar por :</label>
+				<select id="orderby">
+					<option value="name">Nombre</option>
+					<option value="percent">Porcentaje General</option>
+					<option value="exercises">% Ejercicios completados</option>
+					<option value="quizzes">% Quizzes completados</option>
+					<option value="scoreAvg">Puntuacion Promedio de Quizzes</option>
+					<option value="reads">% Lecturas completados</option>
+				</select>
+				<label for="orderDirection">Direccion</label>
+				<select  id="orderDirection">
+					<option value="ASC">Ascendete</option>
+					<option value="DESC">Descendente</option>
+				</select>
+				<button id="btn_ordenar">Ordernar!!!</button>
+				<label for="search">Buscar</label>
+				<input type="text"  id="search">
 			</div>
 			<table id="table_detail_general" class="table table-bordered" style="display: none;">
 				<thead>
 					<tr>
 						<th rowspan="2">Name</th>
 						<th colspan="3" >Lecturas</th>
-						<th colspan="3">Quizz</th>
+						<th colspan="4">Quizz</th>
 						<th colspan ="3">Ejercicios</th>
 						<th rowspan="2">Progreso Total</th>
 					</tr>
@@ -65,6 +84,7 @@
 						<th>percent</th>
 						<th>total</th>
 						<th>completados</th>
+						<th>Promedio</th>
 						<th>percent</th>
 						<th>total</th>
 						<th>completados</th>
@@ -79,7 +99,6 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Progresso total</th>
-						<th>Detalle</th>
 					</tr>
 				</thead>
 				<tbody id="table_main_body">
@@ -134,12 +153,13 @@
 			</table>
 			<!--PAGINACIÓN-->
 			<div id="pagination" style="display: none">
-				<a id="prev" href="#">&laquo;</a>
-				<a id="first" href="#">First</a>
-				<a id="last" href="#">Last</a>
-				<a id="next" href="#">&raquo;</a>
+				<button id="prev" disabled="true" style="cursor: not-allowed;">&laquo;</button>
+				<button id="first" disabled="true" style="cursor: not-allowed;">First</button>
+				<button id="last">Last</button>
+				<button id="next">&raquo;</button>
 				<input id="total_row" type="hidden">
 				<input id="current_step" type="hidden">
+				<input id="current_table_paginating" type="hidden">
 			</div>
 		</section>
 	</div>
