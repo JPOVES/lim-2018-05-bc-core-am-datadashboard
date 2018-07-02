@@ -20,7 +20,7 @@
 <!--Esqueleto de la página-->
 <body>
     <div id="totalContenedor">
-        <header>
+        <header class="headerfixed">
             <section id="LaboratoriaLogo">
                 <img src="imagen/LaboratoriaLogoNormalSinTexto.png">
             </section>
@@ -30,7 +30,7 @@
         <!--<nav>
             
     </nav>-->
-        <aside>
+        <aside class="asidefixed">
             <h2></h2>
             <div id="menu_sedes">
                 <form>
@@ -40,7 +40,7 @@
                     <br>
                     <h2 class="icon-sede"> LOCALS:</h2>
                     <select id="locals">
-                        <option value="0">Select</option>
+                        <option value="0">Elije una sede</option>
                         <option value="gdl">Guadalajara</option>
                         <option value="lim">Lima</option>
                         <option value="cdmx">México DF</option>
@@ -50,12 +50,12 @@
 
                     <h2 class="icon-generation"> GENERATION:</h2>
                     <select id="generation">
-                        <option value="0">Select</option>
+                        <option value="0">Elige una generación</option>
                     </select>
 
                     <h2 class="icon-courses"> COURSES:</h2>
                     <select id="courses">
-                        <option value="">Select</option>
+                        <option value="">Elige un curso</option>
                         <option value="0">Introduction</option>
                         <option value="1">Varibles</option>
                         <option value="2">Ux-Desing</option>
@@ -64,7 +64,8 @@
             </div>
         </aside>
         <section id="contenidoTablas">
-            <h2>-</h2>
+            <h2></h2>
+            <div id="table">
             <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -88,6 +89,7 @@
                 <tbody id="tbody">
                 </tbody>
             </table>
+        </div>  
             <!--PAGINACIÓN-->
             <div id="pagination">
                 <a id="prev" href="#">&laquo;</a>

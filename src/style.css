@@ -8,49 +8,59 @@ body{
     background:  #f2f2f2;
 }
 
-/*texto*/
-
 #totalContenedor {
-width: 1330px;
-margin-left: 10px;
-margin-right: 10px;
+width: 98%;
+margin-left: 1%;
+margin-right: 1%;
 margin-top: 0px;
-margin-bottom: 10px;
+margin-bottom: 0%;
 color: black;
-
+display:block;
 }
 
 header{
-    height: 150px;
+    width: 100%;
     background-color:white;
     border-radius:20px; 
     overflow: hidden;
 }
 
+/*cabecera fija*/
+.headerfixed {
+    position: fixed;
+}
+
 #LaboratoriaLogo {
-    margin-top: 0px
+    margin-top: 0px;
+    /*position: fixed;*/
 }
 #LaboratoriaLogo img {
-    width:50%;
-    height:50%;
-    margin-top: -20px;
-    margin-left: 350px;
-    margin-right: 350px;
+    width:30%;
+    margin-top: -10px;
+    margin-left: 35%;
+    margin-right: 35%;
     text-align: center;
+    /*position: fixed;*/
 }
 
 aside{
-    width: 250px;
-    height: 500px;
+    width: 15%;
     float: left;
-    margin-top: 10px;
-    margin-left: 5px;
-    margin-right: 10px;
+    margin-top: 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 1%;
     background-color: #FFE521;
     border-radius:20px; 
     overflow: hidden;
     font-size: 14px;
     font-family:Hurne Geometrica;
+    /*position: fixed;*/
+}
+
+/*aside fijo*/
+.asidefixed{
+position: fixed;
 }
 
 /*centrar foto de Training manager y dando formato*/
@@ -74,12 +84,13 @@ h3 {
 
 } 
 
+/*formato de iconos*/
 .icon-sede,.icon-generation,.icon-courses{
     color:black;
     font-size: 20px;
     font-family:Hurne Geometrica;
 }   
-
+/*texto*/
 #locals,#generation,#courses {
 font-size: 16px;
 font-family:Hurne Geometrica;
@@ -91,44 +102,43 @@ margin-bottom: 20px;
 width: 180px;
 }
 
-
+/*campo para tablas*/
 #contenidoTablas {
-    width: 1050px;
+    width: 84%;
     float: right;
     background-color: white;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    border-radius:20px; 
+    margin-top: 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 1%;
+    border-radius:20px;
     overflow: hidden;
-    font-size: 19px;
+    font-size: 14px;
     font-family:Hurne Geometrica;
+}
+
+    #table{
+        /*overflow:scroll;*/
+        overflow-x:auto;
+        display:block;
+        margin-top: -1%;
     }
-    /*table{
-        display: block;
-        width: 70%;
-        height: 5px;
-        border: 1px solid black;
-      }
-      
+
+     
       td{
-        padding: 5px;
+        padding: 0px;
         font-family:Hurne Geometrica;
         text-align: left;
-        background: #f2f2f2;    
+        background: white; 
       }
       
       th{
-        padding: 5px;
+        padding: 0px;
         font-family:Hurne Geometrica;
         text-align: left;
-        background: #ffc107; 
-      }*/
-
-
-/*clear: both hace que el pie depagina no interfiera
-con aside y contenido de tablas */   
+        background: #FFE521; 
+              }
+ 
 /* Pagination links */
 #pagination a {
     color: black;
@@ -152,6 +162,7 @@ footer {
     clear: both;
     border-radius:20px; 
     overflow: hidden;
+    margin-top: 1%;
 }
 
 footer h2 {
@@ -160,5 +171,5 @@ footer h2 {
     font-family:Hurne Geometrica;
     color: #FFE521;
     text-align: center;
-    padding: 10px;
+    padding: 2px;
 }
