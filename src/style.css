@@ -2,10 +2,11 @@
 * {
     margin:0px;
     padding:0px;
-}
-
-body{
+  }
+  
+  body{
     background:  #f2f2f2;
+<<<<<<< HEAD
 }
 
 #totalContenedor {
@@ -20,9 +21,29 @@ display:block;
 
 header{
     width: 100%;
+=======
+  }
+  
+  /*texto*/
+  
+  /*#totalContenedor {
+  width: 1330px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: black;
+  
+  }*/
+  
+  header{
+    width: 100%;
+    height: 100px;
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055
     background-color:white;
-    border-radius:20px; 
+  
     overflow: hidden;
+<<<<<<< HEAD
 }
 
 /*cabecera fija*/
@@ -45,6 +66,25 @@ header{
 
 aside{
     width: 15%;
+=======
+  }
+  
+  #LaboratoriaLogo {
+    margin-top: 0px
+  }
+  #LaboratoriaLogo img {
+    width:40%;
+    height:30%;
+    margin-top: -20px;
+    margin-left: 350px;
+    margin-right: 350px;
+    text-align: center;
+  }
+  
+  aside{
+    width: 250px;
+    height: 500px;
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055
     float: left;
     margin-top: 1%;
     margin-left: 0%;
@@ -55,6 +95,7 @@ aside{
     overflow: hidden;
     font-size: 14px;
     font-family:Hurne Geometrica;
+<<<<<<< HEAD
     /*position: fixed;*/
 }
 
@@ -65,22 +106,29 @@ position: fixed;
 
 /*centrar foto de Training manager y dando formato*/
 .imgRedonda1{
+=======
+  }
+  
+  /*centrar foto de Training manager y dando formato*/
+  .imgRedonda1{
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055
     display: block;
     margin:auto;
     width:130px;
     height:130px;
     border-radius:150px;
     padding:10px;
-} 
-
-/*Nombre de Training manager*/
-h3 {
+  } 
+  
+  /*Nombre de Training manager*/
+  h3 {
     color:black;
     font-size: 15px;
     font-family:Hurne Geometrica;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+<<<<<<< HEAD
 
 } 
 
@@ -105,6 +153,31 @@ width: 180px;
 /*campo para tablas*/
 #contenidoTablas {
     width: 84%;
+=======
+  
+  } 
+  
+  .icon-sede,.icon-generation,.icon-courses{
+    color:black;
+    font-size: 20px;
+    font-family:Hurne Geometrica;
+  }   
+  
+  #locals,#generation,#courses {
+  font-size: 16px;
+  font-family:Hurne Geometrica;
+  background: black;
+  color:#f2f2f2;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+  width: 180px;
+  }
+  
+  
+  #contenidoTablas {
+    width: 1050px;
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055
     float: right;
     background-color: white;
     margin-top: 1%;
@@ -136,40 +209,66 @@ width: 180px;
         padding: 0px;
         font-family:Hurne Geometrica;
         text-align: left;
+<<<<<<< HEAD
         background: #FFE521; 
               }
  
 /* Pagination links */
 #pagination a {
+=======
+        background: #ffc107; 
+      }*/
+  
+  
+  /*clear: both hace que el pie depagina no interfiera
+  con aside y contenido de tablas */   
+  /* Pagination links */
+  #pagination a {
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-}
+  }
   
   /* Style the active/current link */
-#pagination a.active {
+  #pagination a.active {
     background-color: dodgerblue;
     color: white;
-}
+  }
   /* Add a grey background color on mouse-over */
-#pagination a:hover:not(.active) {
+  #pagination a:hover:not(.active) {
     background-color: #ddd;
-} 
-footer {
+  } 
+  footer {
     background-color: rgb(10, 1, 1);
     clear: both;
     border-radius:20px; 
     overflow: hidden;
+<<<<<<< HEAD
     margin-top: 1%;
 }
 
 footer h2 {
 
+=======
+  }
+  
+  footer h2 {
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055
     font-size: 20px;
     font-family:Hurne Geometrica;
     color: #FFE521;
     text-align: center;
+<<<<<<< HEAD
     padding: 2px;
 }
+=======
+    padding: 10px;
+  }
+  
+  table{
+    text-align: center;
+  }
+>>>>>>> d972a0277c4df3438b1cf7b3f6a94cbea7c15055

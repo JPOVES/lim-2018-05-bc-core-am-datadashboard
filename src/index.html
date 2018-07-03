@@ -1,108 +1,166 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,user-escalable=no, initial-scale=1, maximum-scale=1,minimum-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">  
-    <title>Data Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" 
-      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fontello.css">
-    <!--<link rel = "shortcut icon" type = "image/x-icon" href = "imagenes/cc.ico">-->
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-      crossorigin="anonymous">-->
+<html lang="en">
 
+<head>
+	<meta charset="UTF-8" />
+	<title>Data Dashboard</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="fontello.css">
 </head>
 <!--Esqueleto de la página-->
+
 <body>
-    <div id="totalContenedor">
-        <header class="headerfixed">
-            <section id="LaboratoriaLogo">
-                <img src="imagen/LaboratoriaLogoNormalSinTexto.png">
-            </section>
+	<div id="totalContenedor">
+		<header>
+			<section id="LaboratoriaLogo">
+				<img src="imagen/LaboratoriaLogoNormalSinTexto.png" alt>
+			</section>
+		</header>
+		<aside>
+			<div id="menu_sedes">
+				<form>
+					<img src="imagen/alejandra.jpg" class="imgRedonda1">
+					<h3>Alejandra Ramirez
+						<br>-Training Manager-</h3>
+					<br>
+					<h2 class="icon-sede"> LOCALS:</h2>
+					<select id="locals">
+						<option value="0">Select</option>
+						<option value="gdl">Guadalajara</option>
+						<option value="lim">Lima</option>
+						<option value="cdmx">México DF</option>
+						<option value="spl">Sao Paulo</option>
+						<option value="scl">Santiago De Chile</option>
+					</select>
+					<h2 class="icon-generation"> GENERATION:</h2>
+					<select id="generation">
+						<option value="0">Select</option>
+					</select>
+					<h2 class="icon-courses"> COURSES:</h2>
+					<select id="courses">
+						<option value="0">Select</option>
+					</select>
+				</form>
+			</div>
+		</aside>
+		<section>
+			<div id="filterBtn" style="display: none;">
+				<button id="infoPrimaryBtn" disabled="true" style="cursor: not-allowed">Informacion Primaria</button>
+				<button id="infoGeneralBtn">Informacion General</button>
+				<button id="infoXcursoBtn">Informacion por curso</button>
+			</div>
+			<div id="order_contenedor" style="display: none">
+				<label for="orderby">Ordenar por :</label>
+				<select id="orderby">
+					<option value="name">Nombre</option>
+					<option value="percent">Porcentaje General</option>
+					<option value="exercises">% Ejercicios completados</option>
+					<option value="quizzes">% Quizzes completados</option>
+					<option value="scoreAvg">Puntuacion Promedio de Quizzes</option>
+					<option value="reads">% Lecturas completados</option>
+				</select>
+				<label for="orderDirection">Direccion</label>
+				<select id="orderDirection">
+					<option value="ASC">Ascendete</option>
+					<option value="DESC">Descendente</option>
+				</select>
+				<button id="btn_ordenar">Ordernar!!!</button>
+				<label for="search">Buscar</label>
+				<input type="text" id="search">
+			</div>
+			<table id="table_detail_general" border="1" style="display: none;">
+				<thead>
+					<tr>
+						<th rowspan="2">Name</th>
+						<th colspan="3">Lecturas</th>
+						<th colspan="4">Quizz</th>
+						<th colspan="3">Ejercicios</th>
+						<th rowspan="2">Progreso Total</th>
+					</tr>
+					<tr>
+						<th>total</th>
+						<th>completados</th>
+						<th>percent</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>Promedio</th>
+						<th>percent</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>percent</th>
+					</tr>
+				</thead>
+				<tbody id="tbody_detail_general">
+				</tbody>
+			</table>
+			<table id="table_main" border="1" style="display: none">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Progresso total</th>
+					</tr>
+				</thead>
+				<tbody id="table_main_body">
 
-            <!--<img src="fotos/logoLABORATORIA4.jpeg">-->
-        </header>
-        <!--<nav>
-            
-    </nav>-->
-        <aside class="asidefixed">
-            <h2></h2>
-            <div id="menu_sedes">
-                <form>
-                    <img src="imagen/alejandra.jpg" class='imgRedonda1'>
-                    <h3>Alejandra Ramirez
-                        <br>-Training Manager-</h3>
-                    <br>
-                    <h2 class="icon-sede"> LOCALS:</h2>
-                    <select id="locals">
-                        <option value="0">Elije una sede</option>
-                        <option value="gdl">Guadalajara</option>
-                        <option value="lim">Lima</option>
-                        <option value="cdmx">México DF</option>
-                        <option value="spl">Sao Paulo</option>
-                        <option value="scl">Santiago De Chile</option>
-                    </select>
-
-                    <h2 class="icon-generation"> GENERATION:</h2>
-                    <select id="generation">
-                        <option value="0">Elige una generación</option>
-                    </select>
-
-                    <h2 class="icon-courses"> COURSES:</h2>
-                    <select id="courses">
-                        <option value="">Elige un curso</option>
-                        <option value="0">Introduction</option>
-                        <option value="1">Varibles</option>
-                        <option value="2">Ux-Desing</option>
-                    </select>
-                </form>
-            </div>
-        </aside>
-        <section id="contenidoTablas">
-            <h2></h2>
-            <div id="table">
-            <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th style="display: none;">Id</th>
-                    <th>SignupCohort</th>
-                    <th>Name</th>
-                    <th>Course General</th>
-                    <th>Progress</th>
-                    <th>Introducción</th>
-                    <th>Lecturas</th>
-                    <th>Quizes</th>
-                    <th>Variables</th>
-                    <th>Lecturas</th>
-                    <th>Quizz</th>
-                    <th>Ejercicios</th>
-                    <th>Ux Design</th>
-                    <th>Lecturas</th>
-                    <th>Quizz</th>
-                  </tr>
-                </thead>
-                <tbody id="tbody">
-                </tbody>
-            </table>
-        </div>  
-            <!--PAGINACIÓN-->
-            <div id="pagination">
-                <a id="prev" href="#">&laquo;</a>
-                <a id="first" href="#">First</a>
-                <a id="last" href="#">Last</a>
-                <a id="next" href="#">&raquo;</a>
-                <input id="total_row" type="hidden">
-                <input id="current_step" type="hidden" value="10">
-            </div>
-        </section>
-        <script src="data.js"></script>
-        <script src="main.js"></script>
+				</tbody>
+			</table>
+			<table id="tableInfoXCurso" border="1" class="table table-bordered" style="display: none">
+				<thead>
+					<tr>
+						<th rowspan="3">Name</th>
+						<th colspan="5">Introducción</th>
+						<th colspan="7">Variables</th>
+						<th colspan="5">Ux Design</th>
+					</tr>
+					<tr>
+						<th colspan="2">Lecturas</th>
+						<th colspan="2">Quizzes</th>
+						<th rowspan="2">Porcentaje</th>
+						<th colspan="2">Lecturas</th>
+						<th colspan="2">Ejercicios</th>
+						<th colspan="2">Quizzes</th>
+						<th rowspan="2">Porcentaje</th>
+						<th colspan="2">Lecturas</th>
+						<th colspan="2">Quizzes</th>
+						<th rowspan="2">Porcentaje</th>
+					</tr>
+					<tr>
+						<th>Total</th>
+						<th>completados</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>total</th>
+						<th>completados</th>
+						<th>total</th>
+						<th>completados</th>
+					</tr>
+				</thead>
+				<tbody id="tableInfoXCurso_tbody">
+				</tbody>
+			</table>
+			<!--PAGINACIÓN-->
+			<div id="pagination" style="display: none">
+				<button id="prev" disabled="true" style="cursor: not-allowed;">&laquo;</button>
+				<button id="first" disabled="true" style="cursor: not-allowed;">First</button>
+				<button id="last">Last</button>
+				<button id="next">&raquo;</button>
+				<input id="total_row" type="hidden">
+				<input id="current_step" type="hidden">
+				<input id="current_table_paginating" type="hidden">
+			</div>
+		</section>
+	</div>
+	<footer>
+		<h2>© Diseñado por Genesis Nole y Jessica Poves - LABORATORIA</h2>
+	</footer>
+	<script src="data.js"></script>
+	<script src="main.js"></script>
 </body>
-<footer>
-    <h2>© Diseñado por Genesis Nole y Jessica Poves - LABORATORIA</h2>
-</footer>
+
+</html>

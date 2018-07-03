@@ -58,6 +58,7 @@ describe('data', () => {
           total: 3,
           completed: 2,
           percent: 67,
+          scoreSum: 57,
           scoreAvg: 29,
         });
       });
@@ -75,10 +76,31 @@ describe('data', () => {
   });
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const courses = Object.keys(cohort.coursesIndex);
+    const { users, progress } = fixtures;
 
-    it('debería retornar arreglo de usuarios ordenado por nombre ASC');
-    it('debería retornar arreglo de usuarios ordenado por nombre DESC');
-    it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC');
+    const processed = computeUsersStats(users, progress, courses);
+    
+    it('debería retornar arreglo de usuarios ordenado por nombre ASC', () => {
+      const sorted = sortUsers(processed, 'name', 'ASD')
+      sorted.sort(function (a, b) {
+        assert.isAtMost((a.name.toLowerCase() > b.name.toLowerCase()) - (a.name.toLowerCase() < b.name.toLowerCase()), 1)
+      });
+    });
+
+    it('debería retornar arreglo de usuarios ordenado por nombre DESC', () => {
+      const sorted = sortUsers(processed, 'name', 'DESC')
+      sorted.sort(function (a, b) {
+        assert.isAtMost((a.name.toLowerCase() > b.name.toLowerCase()) - (a.name.toLowerCase() < b.name.toLowerCase()), 1)
+      });
+    });
+
+    it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC',() => {
+     
+
+    });
+
     it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC');
     it('debería retornar arreglo de usuarios ordenado por ejercicios completados ASC');
     it('debería retornar arreglo de usuarios ordenado por ejercicios completados DESC');
@@ -92,6 +114,11 @@ describe('data', () => {
   });
 
   describe('filterUsers(users, filterBy)', () => {
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const courses = Object.keys(cohort.coursesIndex);
+    const { users, progress } = fixtures;
+
+    const processed = computeUsersStats(users, progress, courses);
 
     it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)');
 
