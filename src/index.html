@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8" />
@@ -8,16 +8,15 @@
 	<link rel="stylesheet" href="fontello.css">
 </head>
 <!--Esqueleto de la página-->
+
 <body>
 	<div id="totalContenedor">
 		<header>
 			<section id="LaboratoriaLogo">
-				<img src="imagen/LaboratoriaLogoNormalSinTexto.png">
+				<img src="imagen/LaboratoriaLogoNormalSinTexto.png" alt>
 			</section>
-			<!--<img src="fotos/logoLABORATORIA4.jpeg">-->
 		</header>
 		<aside>
-			<h2></h2>
 			<div id="menu_sedes">
 				<form>
 					<img src="imagen/alejandra.jpg" class="imgRedonda1">
@@ -61,21 +60,21 @@
 					<option value="reads">% Lecturas completados</option>
 				</select>
 				<label for="orderDirection">Direccion</label>
-				<select  id="orderDirection">
+				<select id="orderDirection">
 					<option value="ASC">Ascendete</option>
 					<option value="DESC">Descendente</option>
 				</select>
 				<button id="btn_ordenar">Ordernar!!!</button>
 				<label for="search">Buscar</label>
-				<input type="text"  id="search">
+				<input type="text" id="search">
 			</div>
 			<table id="table_detail_general" border="1" style="display: none;">
 				<thead>
 					<tr>
 						<th rowspan="2">Name</th>
-						<th colspan="3" >Lecturas</th>
+						<th colspan="3">Lecturas</th>
 						<th colspan="4">Quizz</th>
-						<th colspan ="3">Ejercicios</th>
+						<th colspan="3">Ejercicios</th>
 						<th rowspan="2">Progreso Total</th>
 					</tr>
 					<tr>
@@ -108,7 +107,7 @@
 			<table id="tableInfoXCurso" border="1" class="table table-bordered" style="display: none">
 				<thead>
 					<tr>
-						<th rowspan="3">Name</th>	
+						<th rowspan="3">Name</th>
 						<th colspan="5">Introducción</th>
 						<th colspan="7">Variables</th>
 						<th colspan="5">Ux Design</th>
@@ -128,25 +127,19 @@
 					<tr>
 						<th>Total</th>
 						<th>completados</th>
-
 						<th>total</th>
 						<th>completados</th>
-
 						<th>total</th>
 						<th>completados</th>
-
 						<th>total</th>
 						<th>completados</th>
-
 						<th>total</th>
 						<th>completados</th>
-
 						<th>total</th>
 						<th>completados</th>
-
 						<th>total</th>
 						<th>completados</th>
-						</tr>
+					</tr>
 				</thead>
 				<tbody id="tableInfoXCurso_tbody">
 				</tbody>

@@ -105,10 +105,10 @@ window.computeUsersStats = (users, progress, courses) => {
     });
     //console.log(usersWithStats);
     return usersWithStats;
-
-}
-window.sortUsers = (users, orderBy = 'name', orderDirection = 'ASC') => {
-
+  
+  }
+  window.sortUsers = (users, orderBy = 'name', orderDirection = 'ASC') => {
+  
     const orderByProperty = (property, orderDirection) => {
         let sortOrder = 1;
         if(orderDirection === "DESC"){ sortOrder = -1 }
@@ -148,23 +148,23 @@ window.sortUsers = (users, orderBy = 'name', orderDirection = 'ASC') => {
     }
     let usersOrdered = users.sort(orderByProperty(orderBy, orderDirection))
     return usersOrdered;
-}
-
-window.filterUsers = (users, search = null) => {
+  }
+  
+  window.filterUsers = (users, search = null) => {
     if(search != null){
         let usersFiltered = users.filter( user => {
-            if(user.name.includes(search)){
+            if(user.name.toUpperCase().includes(search.toUpperCase())){
                 return user;
             }
         });
         return usersFiltered;
     }
     return users;
-}
-
-window.processCohortData = options => {
+  }
+  
+  window.processCohortData = options => {
     let users = window.computeUsersStats(options.cohortData.users, options.cohortData.progress);
     users = window.sortUsers(users, options.orderBy, options.orderDirection);
     users = window.filterUsers(users, options.search);
     return users;
-}
+  }

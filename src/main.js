@@ -437,12 +437,32 @@ btnOrdenar.addEventListener("click", e => {
 /********************************************************************************
  * EVENTO FILTRAR
  * FILTRA LOS DATOS DE ACUERDO AL STRING QUE SE INGRESE Y MUESTRA LOS DATOS
- * FILTRADOS, LA BUSQUEDAD ES DINAMICA.
+ * FILTRADOS, LA BUSQUEDA ES DINAMICA.
  ********************************************************************************/
 
 inputSearch.addEventListener("keyup", e => {
     let searchString = e.target.value;
     userWithStatsFiltereds = window.filterUsers(window.userWithStatsDefault, searchString);
+    if(userWithStatsFiltereds.length > 10){
+        next.disabled = false;
+        next.style.cursor = "pointer";
+        last.disabled = false;
+        last.style.cursor = "pointer";
+        first.disabled = false;
+        first.style.cursor = "pointer";
+        prev.disabled = false;
+        prev.style.cursor = "pointer";
+    }else {
+        next.disabled = true;
+        next.style.cursor = "not-allowed";
+        last.disabled = true;
+        last.style.cursor = "not-allowed";
+        first.disabled = true;
+        first.style.cursor = "not-allowed";
+        prev.disabled = true;
+        prev.style.cursor = "not-allowed";
+
+    }
     let table = document.getElementById('current_table_paginating').value;
     if(table == 'tableMain'){
         tableMain(window.userWithStatsFiltereds, 0, 10)
